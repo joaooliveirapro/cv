@@ -23,478 +23,116 @@
 <meta name="twitter:description" content="Senior Support Engineer specializing in ETL, API integrations, and job-feed automation. Python, Go, JavaScript.">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/joaooliveirapro/cv/refs/heads/master/og-img.png">
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
+  /* Only what Bootstrap can't provide: fonts, brand color, and the terminal animation */
   :root{
-    --bg: #FAFAF8;
-    --surface: #FFFFFF;
-    --surface-sunken: #F1F0EC;
-    --ink: #14171F;
-    --muted: #63666F;
-    --line: #E4E2DB;
-    --accent: #2952E3;
-    --accent-ink: #FFFFFF;
+    --bs-primary: #2952E3;
+    --bs-primary-rgb: 41,82,227;
     --ok: #1F9D6B;
-    --ok-dim: #E4F4EC;
-    --radius: 10px;
-    --max: 920px;
-    --mono: 'JetBrains Mono', ui-monospace, monospace;
-    --display: 'Space Grotesk', 'Inter', sans-serif;
-    --body: 'Inter', sans-serif;
   }
-
-  *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; }
-  body{
-    margin:0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--body);
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-  }
-  ::selection{ background: var(--accent); color: #fff; }
-
-  a{ color: inherit; }
-
-  .wrap{
-    max-width: var(--max);
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  /* ---------- NAV ---------- */
-  header.nav{
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    background: rgba(250,250,248,0.86);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--line);
-  }
-  .nav .wrap{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
-  .nav-name{
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: -0.01em;
-  }
-  .nav-links{
-    display:flex;
-    gap: 28px;
-    list-style:none;
-    margin:0; padding:0;
-    font-size: 0.9rem;
-  }
-  .nav-links a{
-    text-decoration:none;
-    color: var(--muted);
-    transition: color .15s ease;
-  }
-  .nav-links a:hover, .nav-links a:focus-visible{ color: var(--ink); }
-
-  @media (max-width: 640px){
-    .nav-links{ display:none; }
-  }
-
-  /* ---------- HERO ---------- */
-  .hero{
-    padding: 64px 0 56px;
-  }
-  .eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap: 8px;
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--ok);
-    background: var(--ok-dim);
-    border: 1px solid #CFEBDD;
-    padding: 5px 12px;
-    border-radius: 999px;
-    margin-bottom: 28px;
-  }
-  .eyebrow .dot{
-    width:7px; height:7px; border-radius:50%;
-    background: var(--ok);
+  body{ font-family: 'Inter', sans-serif; }
+  .font-display{ font-family: 'Space Grotesk', 'Inter', sans-serif; }
+  .font-mono{ font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  .bg-console{ background:#14171F; color:#D7DAE0; }
+  .text-ok{ color:#52D999 !important; }
+  .text-warn{ color:#E0A94C !important; }
+  .dot-pulse{
+    width:7px; height:7px; border-radius:50%; background: var(--ok); display:inline-block;
     animation: pulse 2s ease-in-out infinite;
-    flex-shrink:0;
   }
-  @keyframes pulse{
-    0%,100%{ opacity:1; }
-    50%{ opacity: .35; }
-  }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
+  .console-row{ opacity:0; animation: rowin .4s ease forwards; }
+  @keyframes rowin{ from{opacity:0; transform:translateY(3px);} to{opacity:1; transform:translateY(0);} }
   @media (prefers-reduced-motion: reduce){
-    .eyebrow .dot{ animation:none; }
+    .dot-pulse, .console-row{ animation:none; opacity:1; }
   }
-
-  h1.name{
-    font-family: var(--display);
-    font-size: clamp(2.4rem, 5.6vw, 3.6rem);
-    line-height: 1.04;
-    letter-spacing: -0.02em;
-    margin: 0 0 14px;
-  }
-  .title-line{
-    font-size: clamp(1.05rem, 2.2vw, 1.25rem);
-    color: var(--muted);
-    max-width: 640px;
-    margin: 0 0 8px;
-    font-weight: 500;
-  }
-  .title-line strong{ color: var(--ink); font-weight: 600; }
-
-  .pitch{
-    max-width: 560px;
-    color: var(--muted);
-    margin: 18px 0 32px;
-    font-size: 1.02rem;
-  }
-
-  .cta-row{
-    display:flex;
-    flex-wrap:wrap;
-    gap: 12px;
-    margin-bottom: 52px;
-  }
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding: 11px 20px;
-    border-radius: 8px;
-    font-size: 0.92rem;
-    font-weight: 600;
-    text-decoration:none;
-    border: 1px solid transparent;
-    transition: transform .12s ease, background .15s ease, border-color .15s ease;
-  }
-  .btn:active{ transform: translateY(1px); }
-  .btn-primary{
-    background: var(--accent);
-    color: var(--accent-ink);
-  }
-  .btn-primary:hover{ background:#1F41C4; }
-  .btn-ghost{
-    background: transparent;
-    border-color: var(--line);
-    color: var(--ink);
-  }
-  .btn-ghost:hover{ border-color: var(--ink); }
-  .btn:focus-visible{ outline: 2px solid var(--accent); outline-offset: 2px; }
-
-  /* ---------- CONSOLE (signature element) ---------- */
-  .console{
-    background: #14171F;
-    border-radius: var(--radius);
-    padding: 20px 22px 18px;
-    font-family: var(--mono);
-    font-size: 0.84rem;
-    color: #D7DAE0;
-    overflow-x: auto;
-    box-shadow: 0 20px 40px -24px rgba(20,23,31,0.5);
-  }
-  .console-top{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin-bottom: 14px;
-    color: #7B818F;
-  }
-  .console-top span{
-    width:9px; height:9px; border-radius:50%;
-    background:#3A3F4B;
-  }
-  .console-cmd{ color:#8CA1FF; margin-bottom:12px; white-space:nowrap; }
-  .console-cmd::before{ content:"$ "; color:#5B6270; }
-  .console-row{
-    display:grid;
-    grid-template-columns: 56px 1fr auto;
-    gap: 14px;
-    padding: 5px 0;
-    white-space: nowrap;
-    opacity: 0;
-    animation: rowin .4s ease forwards;
-  }
-  .console-row .tag{ color:#5B6270; }
-  .console-row .target{ color:#D7DAE0; }
-  .console-row .status{ color: #52D999; text-align:right; }
-  .console-row.warn .status{ color:#E0A94C; }
-  .console-divider{ border-top: 1px dashed #2B2F3A; margin: 10px 0; }
-  .console-row.final{ color:#8CA1FF; }
-  .console-row.final .status{ color:#52D999; }
-
-  @keyframes rowin{
-    from{ opacity:0; transform: translateY(3px); }
-    to{ opacity:1; transform: translateY(0); }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .console-row{ animation:none; opacity:1; }
-  }
-
-  /* ---------- SECTIONS ---------- */
-  section{ padding: 56px 0; }
-  section + section{ border-top: 1px solid var(--line); }
-
-  .section-head{
-    display:flex;
-    align-items:baseline;
-    gap: 14px;
-    margin-bottom: 30px;
-  }
-  .section-num{
-    font-family: var(--mono);
-    color: var(--muted);
-    font-size: 0.8rem;
-  }
-  h2.section-title{
-    font-family: var(--display);
-    font-size: 1.5rem;
-    letter-spacing: -0.01em;
-    margin: 0;
-  }
-
-  /* About */
-  .about-text{
-    max-width: 680px;
-    font-size: 1.04rem;
-    color: #2B2E37;
-  }
-  .about-text + .about-text{ margin-top: 14px; }
-
-  /* Experience */
-  .job{
-    display:grid;
-    grid-template-columns: 200px 1fr;
-    gap: 24px;
-    padding: 26px 0;
-    border-top: 1px solid var(--line);
-  }
-  .job:first-of-type{ border-top:none; padding-top:0; }
-  .job-meta{ padding-top: 2px; }
-  .job-dates{
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-  .job-company{
-    font-weight: 600;
-    margin-top: 4px;
-    font-size: 0.95rem;
-  }
-  .job-role{
-    font-family: var(--display);
-    font-size: 1.08rem;
-    font-weight: 600;
-    margin: 0 0 10px;
-  }
-  .job ul{
-    margin: 0;
-    padding-left: 18px;
-    color: #2B2E37;
-  }
-  .job li{ margin-bottom: 7px; font-size: 0.97rem; }
-  .job li:last-child{ margin-bottom:0; }
-
-  @media (max-width: 680px){
-    .job{ grid-template-columns: 1fr; gap: 6px; }
-  }
-
-  /* Skills */
-  .skill-groups{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 28px;
-  }
-  .skill-group-title{
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--muted);
-    margin: 0 0 12px;
-  }
-  .chips{ display:flex; flex-wrap:wrap; gap: 8px; }
-  .chip{
-    font-family: var(--mono);
-    font-size: 0.82rem;
-    background: var(--surface-sunken);
-    border: 1px solid var(--line);
-    padding: 5px 10px;
-    border-radius: 6px;
-    color: #2B2E37;
-  }
-
-  /* Projects */
-  .projects{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-  }
-  .project-card{
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 24px;
-    display:flex;
-    flex-direction:column;
-    gap: 12px;
-  }
-  .project-kicker{
-    font-family: var(--mono);
-    font-size: 0.76rem;
-    color: var(--accent);
-  }
-  .project-title{
-    font-family: var(--display);
-    font-size: 1.15rem;
-    font-weight: 600;
-    margin:0;
-  }
-  .project-desc{
-    color: var(--muted);
-    font-size: 0.95rem;
-    flex-grow:1;
-  }
-  .project-stack{
-    display:flex; flex-wrap:wrap; gap:6px;
-    margin-top: 4px;
-  }
-  .stack-tag{
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--muted);
-    background: var(--surface-sunken);
-    padding: 3px 8px;
-    border-radius: 4px;
-  }
-
-  /* Contact / footer */
-  footer{
-    padding: 56px 0 64px;
-  }
-  .contact-title{
-    font-family: var(--display);
-    font-size: clamp(1.6rem, 3.6vw, 2.2rem);
-    letter-spacing: -0.01em;
-    max-width: 560px;
-    margin: 0 0 28px;
-  }
-  .contact-grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px 32px;
-    margin-bottom: 40px;
-  }
-  .contact-item-label{
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin-bottom: 4px;
-  }
-  .contact-item-value a{
-    text-decoration: none;
-    font-weight: 600;
-    border-bottom: 1px solid transparent;
-  }
-  .contact-item-value a:hover{ border-bottom-color: var(--ink); }
-  .foot-note{
-    font-size: 0.85rem;
-    color: var(--muted);
-    border-top: 1px solid var(--line);
-    padding-top: 24px;
-  }
-
-  /* reveal on scroll */
-  .reveal{
-    opacity:0;
-    transform: translateY(14px);
-    transition: opacity .5s ease, transform .5s ease;
-  }
-  .reveal.in{ opacity:1; transform:none; }
-  @media (prefers-reduced-motion: reduce){
-    .reveal{ opacity:1; transform:none; transition:none; }
-  }
+  .link-underline-hover{ text-decoration:none; }
+  .link-underline-hover:hover{ text-decoration:underline; }
 </style>
 </head>
-<body>
+<body class="bg-light">
 
-<header class="nav">
-  <div class="wrap">
-    <div class="nav-name">João Oliveira</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+<header class="navbar navbar-expand-md sticky-top bg-white border-bottom">
+  <div class="container">
+    <a class="navbar-brand font-display fw-bold" href="#">João Oliveira</a>
+    <div class="d-none d-md-flex gap-4">
+      <a href="#about" class="text-secondary link-underline-hover">About</a>
+      <a href="#experience" class="text-secondary link-underline-hover">Experience</a>
+      <a href="#skills" class="text-secondary link-underline-hover">Skills</a>
+      <a href="#projects" class="text-secondary link-underline-hover">Projects</a>
+      <a href="#contact" class="text-secondary link-underline-hover">Contact</a>
+    </div>
   </div>
 </header>
 
-<main>
-  <section class="hero wrap">
-    <span class="eyebrow"><span class="dot"></span>Open to work · UK &amp; EU remote</span>
+<main class="container">
 
-    <h1 class="name">João Oliveira</h1>
-    <p class="title-line">Senior Support Engineer — <strong>Data Workflows, ETL &amp; API Integrations</strong></p>
+  <!-- HERO -->
+  <section class="py-5">
+    <span class="badge rounded-pill bg-white border text-success font-mono fw-normal mb-4 px-3 py-2">
+      <span class="dot-pulse me-1"></span> Open to work · UK &amp; EU remote
+    </span>
 
-    <p class="pitch">I specialize in enterprise ATS integrations, combining technical support with software engineering to troubleshoot APIs, job feeds, and data pipelines while building Python and Go tools that automate operations and improve reliability.</p>
+    <h1 class="font-display display-4 fw-bold mb-3">João Oliveira</h1>
+    <p class="fs-4 text-secondary mb-2">Senior Support Engineer<br><strong class="text-dark">Data Workflows, ETL &amp; API Integrations</strong></p>
+    <p class="text-secondary col-md-7 mt-3 mb-4">I specialize in enterprise ATS integrations, combining technical support with software engineering to troubleshoot APIs, job feeds, and data pipelines while building Python and Go tools that automate operations and improve reliability.</p>
 
-    <div class="cta-row">
+    <div class="d-flex flex-wrap gap-2 mb-5">
       <a class="btn btn-primary" href="mailto:joao00alex@gmail.com">Email me</a>
-      <a class="btn btn-ghost" href="https://github.com/joaooliveirapro" target="_blank" rel="noopener">GitHub</a>
-      <a class="btn btn-ghost" href="https://linkedin.com/in/joaooliveirapro" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-outline-secondary" href="https://github.com/joaooliveirapro" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-outline-secondary" href="https://linkedin.com/in/joaooliveirapro" target="_blank" rel="noopener">LinkedIn</a>
     </div>
 
-    <div class="console" role="img" aria-label="Terminal output showing feed health checks, ending with candidate status open to work">
-      <div class="console-top"><span></span><span></span><span></span></div>
-      <div class="console-cmd">sentinel status --client=all --check=feeds,api</div>
-
-      <div class="console-row" style="animation-delay:.05s"><span class="tag">FEED</span><span class="target">client-uk-jobs.xml</span><span class="status">synced · 2m ago</span></div>
-      <div class="console-row" style="animation-delay:.15s"><span class="tag">FEED</span><span class="target">client-eu-careers.json</span><span class="status">synced · 9m ago</span></div>
-      <div class="console-row warn" style="animation-delay:.25s"><span class="tag">SFTP</span><span class="target">client-emea-jobs.csv</span><span class="status">stale · alert sent</span></div>
-      <div class="console-row" style="animation-delay:.35s"><span class="tag">API</span><span class="target">jobsadmin/v2/facets</span><span class="status">200 OK</span></div>
-      <div class="console-row" style="animation-delay:.45s"><span class="tag">API</span><span class="target">jobsadmin/v2/benefits-map</span><span class="status">200 OK</span></div>
-
-      <div class="console-divider"></div>
-      <div class="console-row final" style="animation-delay:.6s"><span class="tag">CNDT</span><span class="target">joao_oliveira</span><span class="status">open_to_work ✓</span></div>
-    </div>
-  </section>
-
-  <section id="about" class="wrap">
-    <div class="section-head reveal">
-      <span class="section-num">01</span>
-      <h2 class="section-title">About</h2>
-    </div>
-    <div class="reveal">
-      <p class="about-text">Senior Software Support Engineer with 10+ years bridging support, product, and data engineering for enterprise ATS and CMS platforms. I specialize in connectinc and diagnosing complex API and feed integrations under pressure. Issue are dealt with quickly and effeciently and processes are put in place that stops the same issue from happening twice.</p>
-      <p class="about-text">Day to day that means JavaScript for client-side script mapping and data transforms, Python and Go for internal monitoring tools, and a lot of time inside job feeds — XML, JSON, SFTP — for clients running tens of thousands of live postings across the World. Native Portuguese and Spanish, fluent English, working French.</p>
-    </div>
-  </section>
-
-  <section id="experience" class="wrap">
-    <div class="section-head reveal">
-      <span class="section-num">02</span>
-      <h2 class="section-title">Experience</h2>
-    </div>
-
-    <div class="job reveal">
-      <div class="job-meta">
-        <div class="job-dates">Apr 2025 — Present</div>
-        <div class="job-company">Radancy · Remote</div>
+    <div class="bg-console rounded-3 p-4 font-mono small" role="img" aria-label="Terminal output showing feed health checks, ending with candidate status open to work">
+      <div class="d-flex gap-2 mb-3 text-secondary">
+        <span class="badge bg-secondary rounded-circle p-1">&nbsp;</span>
+        <span class="badge bg-secondary rounded-circle p-1">&nbsp;</span>
+        <span class="badge bg-secondary rounded-circle p-1">&nbsp;</span>
       </div>
-      <div>
-        <h3 class="job-role">Senior Software Support</h3>
-        <ul>
+      <div class="mb-3" style="color:#8CA1FF;">$ sentinel status --client=all --check=feeds,api</div>
+
+      <div class="row console-row" style="animation-delay:.05s"><div class="col-2 text-secondary">FEED</div><div class="col-6">client-uk-jobs.xml</div><div class="col-4 text-end text-ok">synced · 2m ago</div></div>
+      <div class="row console-row" style="animation-delay:.15s"><div class="col-2 text-secondary">FEED</div><div class="col-6">client-eu-careers.json</div><div class="col-4 text-end text-ok">synced · 9m ago</div></div>
+      <div class="row console-row" style="animation-delay:.25s"><div class="col-2 text-secondary">SFTP</div><div class="col-6">client-emea-jobs.csv</div><div class="col-4 text-end text-warn">stale · alert sent</div></div>
+      <div class="row console-row" style="animation-delay:.35s"><div class="col-2 text-secondary">API</div><div class="col-6">jobsadmin/v2/facets</div><div class="col-4 text-end text-ok">200 OK</div></div>
+      <div class="row console-row" style="animation-delay:.45s"><div class="col-2 text-secondary">API</div><div class="col-6">jobsadmin/v2/benefits-map</div><div class="col-4 text-end text-ok">200 OK</div></div>
+
+      <hr class="border-secondary opacity-25">
+      <div class="row console-row" style="animation-delay:.6s; color:#8CA1FF;"><div class="col-2">CNDT</div><div class="col-6">joao_oliveira</div><div class="col-4 text-end text-ok">open_to_work ✓</div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-5 border-top">
+    <div class="d-flex align-items-baseline gap-3 mb-4">
+      <span class="font-mono text-secondary small">01</span>
+      <h2 class="font-display h4 mb-0">About</h2>
+    </div>
+    <p class="col-lg-8">Senior Software Support Engineer with 10+ years bridging support, product, and data engineering for enterprise ATS and CMS platforms. I specialize in connecting and diagnosing complex API and feed integrations under pressure. Issues are dealt with quickly and efficiently, and processes are put in place that stop the same issue from happening twice.</p>
+    <p class="col-lg-8">Day to day that means JavaScript for client-side script mapping and data transforms, Python and Go for internal monitoring tools, and a lot of time inside job feeds — XML, JSON, SFTP — for clients running tens of thousands of live postings across the World. Native Portuguese and Spanish, fluent English, working French.</p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="py-5 border-top">
+    <div class="d-flex align-items-baseline gap-3 mb-4">
+      <span class="font-mono text-secondary small">02</span>
+      <h2 class="font-display h4 mb-0">Experience</h2>
+    </div>
+
+    <div class="row py-4 border-top">
+      <div class="col-md-3">
+        <div class="font-mono text-secondary small">Apr 2025 — Present</div>
+        <div class="fw-semibold mt-1">Radancy · Remote</div>
+      </div>
+      <div class="col-md-9">
+        <h3 class="font-display h6 fw-bold mb-2">Senior Software Support</h3>
+        <ul class="mb-0">
           <li>Lead complex ATS API and Radancy CMS integration troubleshooting for enterprise clients running 50,000+ live job postings.</li>
           <li>Designed and built an internal ETL prototype in Python and Go to automate data ingestion and transformation for a high-value client.</li>
           <li>Mentor and train new hires on API integrations, feed mapping, and internal tooling.</li>
@@ -503,14 +141,14 @@
       </div>
     </div>
 
-    <div class="job reveal">
-      <div class="job-meta">
-        <div class="job-dates">Apr 2020 — Apr 2025</div>
-        <div class="job-company">Radancy · Remote</div>
+    <div class="row py-4 border-top">
+      <div class="col-md-3">
+        <div class="font-mono text-secondary small">Apr 2020 — Apr 2025</div>
+        <div class="fw-semibold mt-1">Radancy · Remote</div>
       </div>
-      <div>
-        <h3 class="job-role">Software Support</h3>
-        <ul>
+      <div class="col-md-9">
+        <h3 class="font-display h6 fw-bold mb-2">Software Support</h3>
+        <ul class="mb-0">
           <li>Delivered support and implementation for XML/SFTP job feeds, JSON APIs, and CMS pipelines to external job boards including Indeed and LinkedIn.</li>
           <li>Built Python automation scripts that cut daily reporting and monitoring time substantially.</li>
           <li>Diagnosed and resolved high-impact issues across engineering, product, and digital teams; contributed to API and product documentation.</li>
@@ -519,14 +157,14 @@
       </div>
     </div>
 
-    <div class="job reveal">
-      <div class="job-meta">
-        <div class="job-dates">Apr 2018 — Apr 2020</div>
-        <div class="job-company">Crownpeak · London (Hybrid)</div>
+    <div class="row py-4 border-top">
+      <div class="col-md-3">
+        <div class="font-mono text-secondary small">Apr 2018 — Apr 2020</div>
+        <div class="fw-semibold mt-1">Crownpeak · London (Hybrid)</div>
       </div>
-      <div>
-        <h3 class="job-role">Software Support</h3>
-        <ul>
+      <div class="col-md-9">
+        <h3 class="font-display h6 fw-bold mb-2">Software Support</h3>
+        <ul class="mb-0">
           <li>Built Python tools generating weekly client reports and streamlining QA workflows, cutting reporting time considerably.</li>
           <li>Delivered accessibility-scan support and WCAG 2.0 / SEO training to enterprise clients.</li>
           <li>Wrote JavaScript regex parsing and crawling rules for compliance scans.</li>
@@ -535,14 +173,14 @@
       </div>
     </div>
 
-    <div class="job reveal">
-      <div class="job-meta">
-        <div class="job-dates">Apr 2015 — Apr 2018</div>
-        <div class="job-company">Actionstep · London</div>
+    <div class="row py-4 border-top">
+      <div class="col-md-3">
+        <div class="font-mono text-secondary small">Apr 2015 — Apr 2018</div>
+        <div class="fw-semibold mt-1">Actionstep · London</div>
       </div>
-      <div>
-        <h3 class="job-role">Software Support</h3>
-        <ul>
+      <div class="col-md-9">
+        <h3 class="font-display h6 fw-bold mb-2">Software Support</h3>
+        <ul class="mb-0">
           <li>Configured workflows, document templates, and data imports in PHP and JavaScript for a SaaS legal practice-management platform.</li>
           <li>Supported clients through API integrations, authentication setup, and endpoint testing.</li>
           <li>Acted as liaison between clients and development, translating business requirements into technical specs.</li>
@@ -551,136 +189,129 @@
     </div>
   </section>
 
-  <section id="skills" class="wrap">
-    <div class="section-head reveal">
-      <span class="section-num">03</span>
-      <h2 class="section-title">Skills</h2>
+  <!-- SKILLS -->
+  <section id="skills" class="py-5 border-top">
+    <div class="d-flex align-items-baseline gap-3 mb-4">
+      <span class="font-mono text-secondary small">03</span>
+      <h2 class="font-display h4 mb-0">Skills</h2>
     </div>
-    <div class="skill-groups reveal">
-      <div>
-        <div class="skill-group-title">Integrations &amp; Data</div>
-        <div class="chips">
-          <span class="chip">REST APIs</span>
-          <span class="chip">SFTP feeds</span>
-          <span class="chip">XML / JSON</span>
-          <span class="chip">ATS systems</span>
-          <span class="chip">ETL / ELT</span>
-          <span class="chip">Feed mapping</span>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3">
+        <div class="font-mono text-secondary small text-uppercase mb-2">Integrations &amp; Data</div>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="badge bg-white border text-dark font-mono fw-normal">REST APIs</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">SFTP feeds</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">XML / JSON</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">ATS systems</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">ETL / ELT</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">Feed mapping</span>
         </div>
       </div>
-      <div>
-        <div class="skill-group-title">Programming</div>
-        <div class="chips">
-          <span class="chip">JavaScript</span>
-          <span class="chip">Python</span>
-          <span class="chip">Go</span>
-          <span class="chip">TypeScript</span>
-          <span class="chip">SQL</span>
+      <div class="col-sm-6 col-lg-3">
+        <div class="font-mono text-secondary small text-uppercase mb-2">Programming</div>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="badge bg-white border text-dark font-mono fw-normal">JavaScript</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">Python</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">Go</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">TypeScript</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">SQL</span>
         </div>
       </div>
-      <div>
-        <div class="skill-group-title">Tooling &amp; Platforms</div>
-        <div class="chips">
-          <span class="chip">Docker</span>
-          <span class="chip">Git</span>
-          <span class="chip">Jira</span>
-          <span class="chip">CMS systems</span>
-          <span class="chip">Monitoring &amp; alerting</span>
+      <div class="col-sm-6 col-lg-3">
+        <div class="font-mono text-secondary small text-uppercase mb-2">Tooling &amp; Platforms</div>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="badge bg-white border text-dark font-mono fw-normal">Docker</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">Git</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">Jira</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">CMS systems</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">Monitoring &amp; alerting</span>
         </div>
       </div>
-      <div>
-        <div class="skill-group-title">Languages</div>
-        <div class="chips">
-          <span class="chip">Portuguese — native</span>
-          <span class="chip">Spanish — native</span>
-          <span class="chip">English — fluent</span>
-          <span class="chip">French — working</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects" class="wrap">
-    <div class="section-head reveal">
-      <span class="section-num">04</span>
-      <h2 class="section-title">Projects</h2>
-    </div>
-    <div class="projects reveal">
-      <div class="project-card">
-        <div class="project-kicker">Internal tool · API gateway + dashboard</div>
-        <h3 class="project-title">Sentinel</h3>
-        <p class="project-desc">A Go API gateway in front of Radancy's JobsAdmin platform, paired with a Vue 3 front end. Gives the support team a live, single-dashboard view of client feeds, facets, and search config across every region — replacing manual API calls with one interface.</p>
-        <div class="project-stack">
-          <span class="stack-tag">Go · Gin</span>
-          <span class="stack-tag">Vue 3</span>
-          <span class="stack-tag">REST API</span>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-kicker">Internal tool · monitoring service</div>
-        <h3 class="project-title">SFTP Feed Monitor</h3>
-        <p class="project-desc">A Go service that walks every client's SFTP job feed on a schedule, flags files that haven't updated within 24 hours, and pushes alerts through an internal email service — catching silent feed failures before clients ever notice.</p>
-        <div class="project-stack">
-          <span class="stack-tag">Go</span>
-          <span class="stack-tag">Postgres / GORM</span>
-          <span class="stack-tag">SFTP</span>
+      <div class="col-sm-6 col-lg-3">
+        <div class="font-mono text-secondary small text-uppercase mb-2">Languages</div>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="badge bg-white border text-dark font-mono fw-normal">Portuguese — native</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">Spanish — native</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">English — fluent</span>
+          <span class="badge bg-white border text-dark font-mono fw-normal">French — working</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="wrap">
-    <footer>
-      <div class="reveal">
-        <h2 class="contact-title">Looking for a Data & Integrations Engineer? Let's talk.</h2>
-        <div class="contact-grid">
-          <div>
-            <div class="contact-item-label">EMAIL</div>
-            <div class="contact-item-value"><a href="mailto:joao00alex@gmail.com">joao00alex@gmail.com</a></div>
-          </div>
-          <div>
-            <div class="contact-item-label">PHONE — UK</div>
-            <div class="contact-item-value"><a href="tel:+447517645599">+44 07517 645599</a></div>
-          </div>
-          <div>
-            <div class="contact-item-label">PHONE — ES</div>
-            <div class="contact-item-value"><a href="tel:+34604120093">+34 604 120 093</a></div>
-          </div>
-          <div>
-            <div class="contact-item-label">GITHUB</div>
-            <div class="contact-item-value"><a href="https://github.com/joaooliveirapro" target="_blank" rel="noopener">github.com/joaooliveirapro</a></div>
-          </div>
-          <div>
-            <div class="contact-item-label">LINKEDIN</div>
-            <div class="contact-item-value"><a href="https://linkedin.com/in/joaooliveirapro" target="_blank" rel="noopener">linkedin.com/in/joaooliveirapro</a></div>
-          </div>
-          <div>
-            <div class="contact-item-label">EDUCATION</div>
-            <div class="contact-item-value">BSc Computer Science, Birkbeck, University of London</div>
+  <!-- PROJECTS -->
+  <section id="projects" class="py-5 border-top">
+    <div class="d-flex align-items-baseline gap-3 mb-4">
+      <span class="font-mono text-secondary small">04</span>
+      <h2 class="font-display h4 mb-0">Projects</h2>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="card h-100 p-2">
+          <div class="card-body d-flex flex-column">
+            <div class="font-mono small text-primary mb-1">Internal tool · API gateway + dashboard</div>
+            <h3 class="font-display h5 fw-bold">Sentinel</h3>
+            <p class="text-secondary flex-grow-1">A Go API gateway in front of Radancy's JobsAdmin platform, paired with a Vue 3 front end. Gives the support team a live, single-dashboard view of client feeds, facets, and search config across every region — replacing manual API calls with one interface.</p>
+            <div class="d-flex flex-wrap gap-1 mt-2">
+              <span class="badge bg-light text-secondary font-mono fw-normal border">Go · Gin</span>
+              <span class="badge bg-light text-secondary font-mono fw-normal border">Vue 3</span>
+              <span class="badge bg-light text-secondary font-mono fw-normal border">REST API</span>
+            </div>
           </div>
         </div>
-        <p class="foot-note">Based across the UK and Spain · EU citizen · open to hybrid or fully remote roles.</p>
       </div>
-    </footer>
+      <div class="col-md-6">
+        <div class="card h-100 p-2">
+          <div class="card-body d-flex flex-column">
+            <div class="font-mono small text-primary mb-1">Internal tool · monitoring service</div>
+            <h3 class="font-display h5 fw-bold">SFTP Feed Monitor</h3>
+            <p class="text-secondary flex-grow-1">A Go service that walks every client's SFTP job feed on a schedule, flags files that haven't updated within 24 hours, and pushes alerts through an internal email service — catching silent feed failures before clients ever notice.</p>
+            <div class="d-flex flex-wrap gap-1 mt-2">
+              <span class="badge bg-light text-secondary font-mono fw-normal border">Go</span>
+              <span class="badge bg-light text-secondary font-mono fw-normal border">Postgres / GORM</span>
+              <span class="badge bg-light text-secondary font-mono fw-normal border">SFTP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
+
+  <!-- CONTACT -->
+  <footer id="contact" class="py-5 border-top">
+    <h2 class="font-display display-6 col-lg-7 mb-4">Looking for a Data & Integrations Engineer? Let's talk.</h2>
+    <div class="row g-4 mb-4">
+      <div class="col-sm-6 col-lg-4">
+        <div class="font-mono text-secondary small mb-1">EMAIL</div>
+        <a class="fw-semibold link-underline-hover" href="mailto:joao00alex@gmail.com">joao00alex@gmail.com</a>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="font-mono text-secondary small mb-1">PHONE — UK</div>
+        <a class="fw-semibold link-underline-hover" href="tel:+447517645599">+44 07517 645599</a>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="font-mono text-secondary small mb-1">PHONE — ES</div>
+        <a class="fw-semibold link-underline-hover" href="tel:+34604120093">+34 604 120 093</a>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="font-mono text-secondary small mb-1">GITHUB</div>
+        <a class="fw-semibold link-underline-hover" href="https://github.com/joaooliveirapro" target="_blank" rel="noopener">github.com/joaooliveirapro</a>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="font-mono text-secondary small mb-1">LINKEDIN</div>
+        <a class="fw-semibold link-underline-hover" href="https://linkedin.com/in/joaooliveirapro" target="_blank" rel="noopener">linkedin.com/in/joaooliveirapro</a>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="font-mono text-secondary small mb-1">EDUCATION</div>
+        <div class="fw-semibold">BSc Computer Science, Birkbeck, University of London</div>
+      </div>
+    </div>
+    <p class="text-secondary small border-top pt-4">Based across the UK and Spain · EU citizen · open to hybrid or fully remote roles.</p>
+  </footer>
+
 </main>
 
-<script>
-  const revealEls = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => io.observe(el));
-  } else {
-    revealEls.forEach(el => el.classList.add('in'));
-  }
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 
 </body>
 </html>
