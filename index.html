@@ -73,11 +73,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <a class="navbar-brand font-display fw-bold" href="#">João Oliveira</a>
     <div class="d-none d-md-flex gap-4">
-      <a href="#about" class="text-secondary link-underline-hover">About</a>
-      <a href="#experience" class="text-secondary link-underline-hover">Experience</a>
-      <a href="#skills" class="text-secondary link-underline-hover">Skills</a>
-      <a href="#projects" class="text-secondary link-underline-hover">Projects</a>
-      <a href="#contact" class="text-secondary link-underline-hover">Contact</a>
+      <a href="#about" class="text-secondary link-underline-hover" 
+        onclick="trackEvent('/cv', 'nav__about')">About</a>
+      <a href="#experience" class="text-secondary link-underline-hover"
+      onclick="trackEvent('/cv', 'nav__experience')">Experience</a>
+      <a href="#skills" class="text-secondary link-underline-hover"
+      onclick="trackEvent('/cv', 'nav__skills')">Skills</a>
+      <a href="#projects" class="text-secondary link-underline-hover"
+      onclick="trackEvent('/cv', 'nav__projects')">Projects</a>
+      <a href="#contact" class="text-secondary link-underline-hover"
+      onclick="trackEvent('/cv', 'nav__contacts')">Contact</a>
     </div>
   </div>
 </header>
@@ -99,9 +104,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
 
     <div class="d-flex flex-wrap gap-2 mb-5">
-      <a class="btn btn-primary" href="mailto:joao00alex@gmail.com">Email me</a>
-      <a class="btn btn-outline-secondary" href="https://github.com/joaooliveirapro" target="_blank" rel="noopener">GitHub</a>
-      <a class="btn btn-outline-secondary" href="https://linkedin.com/in/joaooliveirapro" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-primary" href="mailto:joao00alex@gmail.com"
+      onclick="trackEvent('/cv', 'hero__email_me')">Email me</a>
+      <a class="btn btn-outline-secondary" href="https://github.com/joaooliveirapro" target="_blank" rel="noopener" onclick="trackEvent('/cv', 'hero__github')">GitHub</a>
+      <a class="btn btn-outline-secondary" href="https://linkedin.com/in/joaooliveirapro" target="_blank" rel="noopener" onclick="trackEvent('/cv', 'hero__linkedin')">LinkedIn</a>
     </div>
 
     <div class="bg-console rounded-3 p-4 font-mono small" role="img" aria-label="Terminal output showing feed health checks, ending with candidate status open to work">
@@ -124,14 +130,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- About -->
-   <div class="d-flex align-items-baseline gap-3 mb-4">
-      <span class="font-mono text-secondary small">01</span>
-      <h2 class="font-display h4 mb-0">About</h2>
-    </div>
-    <p class="col-md-7 mt-3">I specialize in enterprise ATS integrations, combining technical support with software engineering to troubleshoot APIs, job feeds, and data pipelines.</p>
-    <p class="col-md-7 mt-3 mb-4"> I also perform accessibility audits and reviews based on WCAG 2.0 and build Python and Go tools that automate operations and improve reliability.</p>
-    <p>I enjoy reading - if you're interested, check out <a href="https://joaooliveirapro.github.io/mylibrary/" target="_blank">my virtual bookshelf</a>! 💖📖</p>
-    <p class="col-lg-8 text-secondary small mt-3">Based in UK · EU citizen · Open to remote opportunities</p>
+  <div class="d-flex align-items-baseline gap-3 mb-4">
+    <span class="font-mono text-secondary small">01</span>
+    <h2 class="font-display h4 mb-0">About</h2>
+  </div>
+  <p class="col-md-7 mt-3">I specialize in enterprise ATS integrations, combining technical support with software engineering to troubleshoot APIs, job feeds, and data pipelines.</p>
+  <p class="col-md-7 mt-3 mb-4"> I also perform accessibility audits and reviews based on WCAG 2.0 and build Python and Go tools that automate operations and improve reliability.</p>
+  <p>I enjoy reading - if you're interested, check out <a href="https://joaooliveirapro.github.io/mylibrary/" target="_blank" onclick="trackEvent('/cv', 'about__bookshelf')">my virtual bookshelf</a>! 💖📖</p>
+  <p class="col-lg-8 text-secondary small mt-3">Based in UK · EU citizen · Open to remote opportunities</p>
 
   <!-- SKILLS -->
   <section id="skills" class="py-5 border-top">
@@ -225,7 +231,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <ul style="background-color: #D7DAE0;">
                 <li>This was done as a proof of concept for a very custom solution for a Top 25 client</li>
                 <li>The goal was to deduplicate a specific field from the ATS API from 4 language instances</li>
-                <li>For more details on this and for the sample source code visit: <a href="https://github.com/joaooliveirapro/radagg">My GitHub</a></li>
+                <li>For more details on this and for the sample source code visit: <a href="https://github.com/joaooliveirapro/radagg" onclick="trackEvent('/cv', 'experience__radagg')">My GitHub</a></li>
               </ul>
           </li>
           <li>Mentor and train new hires on complex technical workflows, API integrations, and internal tooling.
@@ -253,7 +259,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </li>
           <li>Built internal automation scripts in Python to streamline reporting and monitoring tasks.
             <ul style="background-color: #D7DAE0;">
-              <li>An example project was <a href="#sentinel">Sentinel</a>. Allowed our team to run automatic reports leveraging the internal Jobs Admin API which reduced manual workload relating to daily checks and re-mappings of failed jobs.</li>
+              <li>An example project was <a href="#sentinel" onclick="trackEvent('/cv', 'experience__sentinel')">Sentinel</a>. Allowed our team to run automatic reports leveraging the internal Jobs Admin API which reduced manual workload relating to daily checks and re-mappings of failed jobs.</li>
             </ul>
           </li>
           <li>Collaborated with engineering, product, and digital teams to diagnose, reproduce, and resolve high-impact issues.</li>
@@ -344,23 +350,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="row g-4 mb-4">
       <div class="col-sm-6 col-lg-4">
         <div class="font-mono text-secondary small mb-1">EMAIL</div>
-        <a class="fw-semibold link-underline-hover" href="mailto:joao00alex@gmail.com">joao00alex@gmail.com</a>
+        <a class="fw-semibold link-underline-hover" href="mailto:joao00alex@gmail.com" onclick="trackEvent('/cv', 'footer__email')">joao00alex@gmail.com</a>
       </div>
       <div class="col-sm-6 col-lg-4">
         <div class="font-mono text-secondary small mb-1">PHONE - UK</div>
-        <a class="fw-semibold link-underline-hover" href="tel:+447517645599">+44 07517 645599</a>
+        <a class="fw-semibold link-underline-hover" href="tel:+447517645599" onclick="trackEvent('/cv', 'footer__uk_phone')">+44 07517 645599</a>
       </div>
       <div class="col-sm-6 col-lg-4">
         <div class="font-mono text-secondary small mb-1">PHONE - ES</div>
-        <a class="fw-semibold link-underline-hover" href="tel:+34604120093">+34 604 120 093</a>
+        <a class="fw-semibold link-underline-hover" href="tel:+34604120093" onclick="trackEvent('/cv', 'footer__es_phone')">+34 604 120 093</a>
       </div>
       <div class="col-sm-6 col-lg-4">
         <div class="font-mono text-secondary small mb-1">GITHUB</div>
-        <a class="fw-semibold link-underline-hover" href="https://github.com/joaooliveirapro" target="_blank" rel="noopener">github.com/joaooliveirapro</a>
+        <a class="fw-semibold link-underline-hover" href="https://github.com/joaooliveirapro" target="_blank" rel="noopener" onclick="trackEvent('/cv', 'footer__github')">github.com/joaooliveirapro</a>
       </div>
       <div class="col-sm-6 col-lg-4">
         <div class="font-mono text-secondary small mb-1">LINKEDIN</div>
-        <a class="fw-semibold link-underline-hover" href="https://linkedin.com/in/joaooliveirapro" target="_blank" rel="noopener">linkedin.com/in/joaooliveirapro</a>
+        <a class="fw-semibold link-underline-hover" href="https://linkedin.com/in/joaooliveirapro" target="_blank" rel="noopener" onclick="trackEvent('/cv', 'footer__linkedin')">linkedin.com/in/joaooliveirapro</a>
       </div>
       <div class="col-sm-6 col-lg-4">
         <div class="font-mono text-secondary small mb-1">EDUCATION</div>
@@ -372,7 +378,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
+<script>
+  function trackEvent(location, element) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'custom_event',
+    location: location,
+    element: element
+  });
+}
+</script>
 </body>
 </html>
