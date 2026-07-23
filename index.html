@@ -347,18 +347,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <footer id="contact" class="py-5 border-top">
     <h2 class="font-display col-lg-8">Multilingual expert in data & integrations with sharp customer support skills</h2>
      <h2 class="font-display col-lg-7 mb-4">Let's talk!</h2>
+     <p><strong>Click on each contact point to reveal it</strong></p>
     <div class="row g-4 mb-4">
       <div class="col-sm-6 col-lg-4">
         <div class="font-mono text-secondary small mb-1">EMAIL</div>
-        <a class="fw-semibold link-underline-hover" href="mailto:joao00alex@gmail.com" onclick="trackEvent('/cv', 'footer__email')">joao00alex@gmail.com</a>
+        <a class="fw-semibold link-underline-hover" id="email_a" href="mailto:joao00alex@gmail.com" onclick="trackEvent('/cv', 'footer__email'); reveal('email_a')">joao******@gmail.com</a>
       </div>
       <div class="col-sm-6 col-lg-4">
         <div class="font-mono text-secondary small mb-1">PHONE - UK</div>
-        <a class="fw-semibold link-underline-hover" href="tel:+447517645599" onclick="trackEvent('/cv', 'footer__uk_phone')">+44 07517 645599</a>
+        <a class="fw-semibold link-underline-hover" id="uk_phone_a" href="javascript:void(0)" onclick="trackEvent('/cv', 'footer__uk_phone'); reveal('uk_phone_a')">+44 07517 6*****</a>
       </div>
       <div class="col-sm-6 col-lg-4">
         <div class="font-mono text-secondary small mb-1">PHONE - ES</div>
-        <a class="fw-semibold link-underline-hover" href="tel:+34604120093" onclick="trackEvent('/cv', 'footer__es_phone')">+34 604 120 093</a>
+        <a class="fw-semibold link-underline-hover" id="es_phone_a" href="javascript:void(0)" onclick="trackEvent('/cv', 'footer__es_phone'); reveal('es_phone_a')">+34 604 ******</a>
       </div>
       <div class="col-sm-6 col-lg-4">
         <div class="font-mono text-secondary small mb-1">GITHUB</div>
@@ -381,6 +382,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+
+  function reveal(p) {
+    let e = document.getElementById(p);
+    switch(p) {
+      case 'uk_phone_a':
+        e.innerText = '+44 07517 645599';
+      break;
+      case 'es_phone_a':
+        e.innerText = '+34 604 120093';
+      break;
+      case 'email_a':
+        e.innerText = 'joao00alex@gmail.com';
+      break;
+    }
+    
+  }
+
   function trackEvent(location, element) {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
